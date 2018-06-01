@@ -65,6 +65,5 @@ Route::get('/profile', function () {
 });
 
 Route::get('/users', function () {
-    $users = App\User::paginate(10);
-    return view('users.index', compact('users'));
+    return view('users.index');
 });
