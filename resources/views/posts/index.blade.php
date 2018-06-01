@@ -30,6 +30,7 @@
                             <td>Jason</td>
                             <td>23-10-2018</td>
                             <th>
+                                <a href="/posts/1" class="btn btn-outline-secondary btn-sm">Show</a>
                                 <a href="/posts/1/edit" class="btn btn-outline-info btn-sm">Edit</a>
                                 <a href="/posts/1/delete" data-title="Title" class="btn btn-outline-danger btn-sm delete-rekod">Delete</a>
                             </th>
@@ -40,6 +41,7 @@
                             <td>Jason</td>
                             <td>23-10-2018</td>
                             <th>
+                                <a href="/posts/1" class="btn btn-outline-secondary btn-sm">Show</a>
                                 <a href="/posts/1/edit" class="btn btn-outline-info btn-sm">Edit</a>
                                 <a href="/posts/1/delete" data-title="Title" class="btn btn-outline-danger btn-sm delete-rekod">Delete</a>
                             </th>
@@ -50,6 +52,7 @@
                             <td>Jason</td>
                             <td>23-10-2018</td>
                             <th>
+                                <a href="/posts/1" class="btn btn-outline-secondary btn-sm">Show</a>
                                 <a href="/posts/1/edit" class="btn btn-outline-info btn-sm">Edit</a>
                                 <a href="/posts/1/delete" data-title="Title" class="btn btn-outline-danger btn-sm delete-rekod">Delete</a>
                             </th>
