@@ -10,8 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -33,8 +32,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    
                     <ul class="navbar-nav mr-auto">
-
+                        <li><a class="nav-link {{ request()->is('/') ? "active" : ""}}" href="/">Blog</a></li>
+                        <li><a class="nav-link {{ request()->is('posts') ? "active" : ""}}" href="/posts">Post</a></li>
+                        <li><a class="nav-link {{ request()->is('users') ? "active" : "" }}" href="/users">User</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -50,6 +52,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/profile">Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -70,6 +73,13 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @yield('modal')
+
+
     </div>
+    <!-- Scripts -->
+    <script src="{{ asset('js/jquery.slim.min.js')}}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('scripts')
 </body>
 </html>

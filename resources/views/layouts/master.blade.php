@@ -1,24 +1,38 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="{{ asset('favicon.ico')}}">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Blog Template for Bootstrap</title>
+      <!-- CSRF Token -->
+      <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/app.css')}}" rel="stylesheet">
+      <title>{{ config('app.name', 'Laravel') }}</title>
+      <link rel="icon" href="{{ asset('favicon.ico')}}">
 
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="{{ asset('css/blog.css')}}" rel="stylesheet">
+      <title>Blog Template for Bootstrap</title>
+
+      <!-- Bootstrap core CSS -->
+      <link href="{{ asset('css/app.css')}}" rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+      <link href="{{ asset('css/blog.css')}}" rel="stylesheet">
   </head>
 
   <body>
-
+    @auth
+    <div class="container mt-3">
+          <div class="row">
+              <div class="col-12">
+                  <center>
+                        <a href="/posts" class="btn btn-sm btn-outline-primary">Back To List Posts</a>
+                  </center>
+            </div>
+        </div>
+    </div>
+    @endauth
     <div class="container">
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
@@ -26,11 +40,32 @@
             <a class="text-muted" href="#">Subscribe</a>
           </div>
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#">Medium</a>
+            <a class="blog-header-logo text-dark" href="/">{{ config('app.name', 'Laravel') }}</a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
-            <a class="btn btn-sm btn-outline-secondary" href="{{ route('register')}}">Sign up</a> &nbsp;
-            <a class="btn btn-sm btn-outline-secondary" href="{{ route('login')}}">Login</a>
+              @guest
+                  <a class="btn btn-sm btn-outline-secondary" href="{{ route('register')}}">Sign up</a> &nbsp;
+                  <a class="btn btn-sm btn-outline-secondary" href="{{ route('login')}}">Login</a>
+              @else
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      Username <span class="caret"></span>
+                  </a>
+
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/profile">Profile</a>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          Logout
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+
+                  </div>
+              @endguest
+
           </div>
         </div>
       </header>
@@ -77,5 +112,6 @@
           text: 'Thumbnail'
         });
       </script>
+
     </body>
   </html>
