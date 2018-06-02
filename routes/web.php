@@ -18,7 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/home', 'HomeController');
+
+Route::get('/impersonate/{id}', function ($id) {
+    auth()->loginUsingId($id, true);
+    return back();
+});
 
 Route::get('/posts', function () {
     return view('posts.index');
@@ -33,11 +37,6 @@ Route::post('/posts', function () {
     // Do a validation
     // Store to database
     // Return back with message
-});
-
-Route::get('/impersonate/{id}', function ($id) {
-    auth()->loginUsingId($id, true);
-    return back();
 });
 
 Route::delete('/posts/{id}', function () {
