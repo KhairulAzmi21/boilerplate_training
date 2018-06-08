@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                {{-- {{ dump($errors) }} --}}
                 <div class="card-header">
                     New Posts
                     <span class="float-right">
@@ -13,10 +14,11 @@
                 </div>
 
                 <div class="card-body">
-                    <form>
+                    <form method="POST" action="{{ route('posts') }}">
+                      @csrf
                       <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" id="title" aria-describedby="title" placeholder="Enter text">
+                        <input type="text" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title" id="title" aria-describedby="title" placeholder="Enter text">
                         <small id="title" class="form-text text-muted">Post Title</small>
                         @if ($errors->has('title'))
                             <span class="invalid-feedback">
@@ -26,15 +28,20 @@
                       </div>
                       <div class="form-group">
                         <label for="body">Body</label>
-                        <textarea name="body" class="form-control" rows="8" cols="80"></textarea>
+                        <textarea name="body" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" rows="8" cols="80"></textarea>
+                        @if ($errors->has('body'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('body') }}</strong>
+                            </span>
+                        @endif
                       </div>
                       <div class="form-group">
                         <label for="category">Category</label>
                         <select class="form-control" name="category">
-                            <option value="1">Science</option>
-                            <option value="2">Team</option>
-                            <option value="3">Tech</option>
-                            <option value="4">Food</option>
+                            @foreach(get_category() as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                            
                         </select>
                       </div>
                       <button type="submit" class="btn btn-primary">Submit</button>

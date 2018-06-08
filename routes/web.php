@@ -10,54 +10,34 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Category;
 
 Route::get('/', function () {
     return view('welcome');
+    // $categories = Category::get();
+    // return view('welcome', compact('categories'));
+    // return view('welcome', [ 'categories' => $categories]);
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::get('/impersonate/{id}', function ($id) {
     auth()->loginUsingId($id, true);
     return back();
 });
 
-Route::get('/posts', function () {
-    return view('posts.index');
-});
+Route::get('/posts', 'PostController@index')->name('posts');
+Route::get('/posts/create', 'PostController@create')->name('posts.create');
+Route::post('/posts', 'PostController@store')->name('posts');
+Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
+Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
+Route::put('/posts/{id}', 'PostController@update')->name('posts.update');
+Route::delete('/posts/{id}', 'PostController@destroy')->name('posts.destroy');
 
-Route::get('/posts/create', function () {
-    return view('posts.create');
-});
 
-Route::post('/posts', function () {
-    // Fetch the request
-    // Do a validation
-    // Store to database
-    // Return back with message
-});
-
-Route::delete('/posts/{id}', function () {
-    //fetch the id
-    //delete
-    //redirect to specific page
-});
-
-Route::put('/posts/{id}', function () {
-    //fetch the id
-    //update
-    //redirect to specific page
-});
-
-Route::get('/posts/{id}', function () {
-    return view('posts.show');
-});
-
-Route::get('/posts/{id}/edit', function () {
-    return view('posts.edit');
-});
 
 Route::get('/profile', function () {
     return view('profile.index');

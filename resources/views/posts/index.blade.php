@@ -19,43 +19,29 @@
                             <th>ID</th>
                             <th>Title</th>
                             <th>Created By</th>
-                            <th>Created At</th>
+                            <th>Category</th>
+                            <th>Created At</th>     
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>Dah Makan</td>
-                            <td>Jason</td>
-                            <td>23-10-2018</td>
+                            
+                        @foreach($posts as $key => $post)
+                         
+                          <tr>                        
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $post->title}}</td>
+                            <td>{{ $post->user->name }}</td>
+                            <td>{{ $post->category->name }}</td>
+                            <td>{{ $post->created_at->toDayDateTimeString() }}</td>
                             <th>
-                                <a href="/posts/1" class="btn btn-outline-secondary btn-sm">Show</a>
-                                <a href="/posts/1/edit" class="btn btn-outline-info btn-sm">Edit</a>
-                                <a href="/posts/1/delete" data-title="Title" class="btn btn-outline-danger btn-sm delete-rekod">Delete</a>
+                                <a href="{{ route('posts.show', $post->id )}}" class="btn btn-outline-secondary btn-sm">Show</a>
+                                <a href="{{ route('posts.edit', $post->id )}}" class="btn btn-outline-info btn-sm">Edit</a>
+                                <a href="{{ route('posts.destroy', $post->id )}}" data-title="Title" class="btn btn-outline-danger btn-sm delete-rekod">Delete</a>
                             </th>
                           </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>Dah Makan</td>
-                            <td>Jason</td>
-                            <td>23-10-2018</td>
-                            <th>
-                                <a href="/posts/1" class="btn btn-outline-secondary btn-sm">Show</a>
-                                <a href="/posts/1/edit" class="btn btn-outline-info btn-sm">Edit</a>
-                                <a href="/posts/1/delete" data-title="Title" class="btn btn-outline-danger btn-sm delete-rekod">Delete</a>
-                            </th>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>Dah Makan</td>
-                            <td>Jason</td>
-                            <td>23-10-2018</td>
-                            <th>
-                                <a href="/posts/1" class="btn btn-outline-secondary btn-sm">Show</a>
-                                <a href="/posts/1/edit" class="btn btn-outline-info btn-sm">Edit</a>
-                                <a href="/posts/1/delete" data-title="Title" class="btn btn-outline-danger btn-sm delete-rekod">Delete</a>
-                            </th>
+                          @endforeach
+                          
                           </tr>
                         </tbody>
                       </table>
