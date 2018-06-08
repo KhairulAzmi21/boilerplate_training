@@ -14,8 +14,8 @@ use App\Category;
 
 Route::get('/', function () {
     $category = request()->category;
-    //get only 4 post.
-    $posts = App\Post::postCategory($category)->take(4)->inRandomOrder()->get();
+    //get only 4 post in random order.
+    $posts = App\Post::take(4)->inRandomOrder()->get();
     return view('welcome', compact('posts'));
 })->name('welcome');
 
@@ -36,8 +36,6 @@ Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
 Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/posts/{id}', 'PostController@update')->name('posts.update');
 Route::delete('/posts/{id}', 'PostController@destroy')->name('posts.destroy');
-
-
 
 Route::resource('profile', 'ProfileController');
 Route::resource('users', 'UserController');

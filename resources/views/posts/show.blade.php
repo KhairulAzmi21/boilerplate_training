@@ -35,7 +35,7 @@
   </div>
   <div class="row mt-3">
       <div class="col-sm-12">
-          @foreach ($post->comments as $comment)
+          {{-- @foreach ($post->comments as $comment)
               <div class="card mb-3">
                   <div class="card-header">
                       {{ $comment->user->name }} at {{ $comment->created_at->diffForHumans() }}
@@ -44,7 +44,7 @@
                      {{ $comment->body }}
                   </div>
               </div>
-          @endforeach
+          @endforeach --}}
 
       </div>
   </div>

@@ -7,7 +7,7 @@
                 <div class="col-md-6">
                   <div class="card flex-md-row mb-4 box-shadow h-md-250">
                     <div class="card-body d-flex flex-column align-items-start">
-                      <strong class="d-inline-block mb-2 text-primary">{{ $post->categories->implode('name', ',') }}</strong>
+                      <strong class="d-inline-block mb-2 text-primary">mani categori</strong>
                       <h3 class="mb-0">
                         <a class="text-dark" href="{{ route('posts.show', $post->id)}}">{{ $post->title }}</a>
                       </h3>

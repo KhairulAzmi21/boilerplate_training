@@ -33,7 +33,7 @@
                             <td>{{ (((request()->page ?? 1)-1)*10)+$key+1 }}</td>
                             <td>{{ $post->title}}</td>
                             <td>{{ $post->user->name }}</td>
-                            <td>{{ $post->categories->implode('name', ',') }}</td>
+                            <td>many categori</td>
                             <td>{{ $post->created_at->toDayDateTimeString() }}</td>
                             <th>
                                 <a href="{{ route('posts.show', $post->id )}}" class="btn btn-outline-secondary btn-sm">Show</a>
