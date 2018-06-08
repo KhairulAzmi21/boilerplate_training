@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     List All Posts
@@ -13,6 +13,7 @@
                 </div>
 
                 <div class="card-body">
+                    <div class="table-responsive-lg">
                       <table class="table table-hover">
                         <thead>
                           <tr>
@@ -20,19 +21,19 @@
                             <th>Title</th>
                             <th>Created By</th>
                             <th>Category</th>
-                            <th>Created At</th>     
+                            <th>Created At</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                            
+
                         @foreach($posts as $key => $post)
-                         
-                          <tr>                        
-                            <td>{{ $key+1 }}</td>
+
+                          <tr>
+                            <td>{{ (((request()->page ?? 1)-1)*10)+$key+1 }}</td>
                             <td>{{ $post->title}}</td>
                             <td>{{ $post->user->name }}</td>
-                            <td>{{ $post->category->name }}</td>
+                            <td>{{ $post->categories->implode('name', ',') }}</td>
                             <td>{{ $post->created_at->toDayDateTimeString() }}</td>
                             <th>
                                 <a href="{{ route('posts.show', $post->id )}}" class="btn btn-outline-secondary btn-sm">Show</a>
@@ -41,10 +42,15 @@
                             </th>
                           </tr>
                           @endforeach
-                          
+
                           </tr>
                         </tbody>
                       </table>
+                   </div>
+                      <div class="float-right">
+                           {{ $posts->links() }}
+                      </div>
+
                 </div>
             </div>
         </div>

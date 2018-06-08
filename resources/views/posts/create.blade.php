@@ -37,11 +37,11 @@
                       </div>
                       <div class="form-group">
                         <label for="category">Category</label>
-                        <select class="form-control" name="category">
+                        <select class="form-control" multiple name="category[]">
                             @foreach(get_category() as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
-                            
+
                         </select>
                       </div>
                       <button type="submit" class="btn btn-primary">Submit</button>

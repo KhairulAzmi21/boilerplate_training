@@ -41,6 +41,7 @@ return [
 
     'debug' => env('APP_DEBUG', false),
 
+    'faker_locale' => 'ms_MY',
     /*
     |--------------------------------------------------------------------------
     | Application URL

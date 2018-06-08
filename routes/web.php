@@ -13,11 +13,11 @@
 use App\Category;
 
 Route::get('/', function () {
-    return view('welcome');
-    // $categories = Category::get();
-    // return view('welcome', compact('categories'));
-    // return view('welcome', [ 'categories' => $categories]);
-});
+    $category = request()->category;
+    //get only 4 post.
+    $posts = App\Post::postCategory($category)->take(4)->inRandomOrder()->get();
+    return view('welcome', compact('posts'));
+})->name('welcome');
 
 Auth::routes();
 
@@ -39,10 +39,5 @@ Route::delete('/posts/{id}', 'PostController@destroy')->name('posts.destroy');
 
 
 
-Route::get('/profile', function () {
-    return view('profile.index');
-});
-
-Route::get('/users', function () {
-    return view('users.index');
-});
+Route::resource('profile', 'ProfileController');
+Route::resource('users', 'UserController');

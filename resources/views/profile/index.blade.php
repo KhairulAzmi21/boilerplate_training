@@ -8,23 +8,29 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    <form>
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('profile.update', auth()->id())}}">
+                        @csrf
+                        @method('PUT')
                       <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="name">
-                        <small id="emailHelp" class="form-text text-muted">Post Title</small>
+                        <input type="text" class="form-control" name="name" id="name" aria-describedby="name" value="{{ old('name',auth()->user()->name) }}">
+                        @if ($errors->has('name'))
+                                <strong class="text-danger">{{ $errors->first('name') }}</strong>
+                        @endif
                       </div>
                       <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" aria-describedby="email" placeholder="email">
+                        <input type="text" class="form-control" name="email" id="email" aria-describedby="email" value="{{ old('email',auth()->user()->email)}}">
+                        @if ($errors->has('email'))
+                                <strong class="text-danger">{{ $errors->first('email') }}</strong>
+                        @endif
                       </div>
                       <div class="form-group">
-                        <label for="age">Age</label>
-                        <input type="text" class="form-control" id="age" aria-describedby="age" placeholder="age">
-                      </div>
-                      <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <input type="text" class="form-control" id="gender" aria-describedby="gender" placeholder="gender">
+                        <label for="avatar">Avatar</label>
+                        <input type="file" class="form-control" name="avatar" id="avatar" aria-describedby="avatar" value="avatar">
+                        @if ($errors->has('avatar'))
+                                <strong class="text-danger">{{ $errors->first('avatar') }}</strong>
+                        @endif
                       </div>
 
                       <button type="submit" class="btn btn-primary">Submit</button>

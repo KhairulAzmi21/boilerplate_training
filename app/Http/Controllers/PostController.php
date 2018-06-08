@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::where('user_id', auth()->id())->paginate(10);
         // $posts = Post::where('user_id', auth()->id())->get();
         //dump($posts);
         //dd(auth()->user()->posts);
@@ -44,22 +44,23 @@ class PostController extends Controller
     {
 
         // Fetch the request
-             //dd($request->all());
+        //dd($request->all());
         // Do a validation
-            $request->validate([
-                'title' => 'required|unique:posts|max:255',
-                'body' => 'required',
+        $request->validate([
+                'title' => 'required|unique:posts|max:255|min:7',
+                'body' => 'required|min:10',
             ]);
-        // Store to database
-            $post = Post::create([
-                'title'       => $request->title,
-                'body'        => $request->body,
-                'category_id' => $request->category,
-                'user_id'     => auth()->id(),
-            ]);
-        // Return back with message
-            return redirect()->route('posts');
 
+        // Store to database
+        $post = Post::create([
+                    'title'       => $request->title,
+                    'body'        => $request->body,
+                    'user_id'     => auth()->id(),
+                ]);
+
+        $post->categories()->sync($request->category);
+        // Return back with message
+        return redirect()->route('posts');
     }
 
     /**
@@ -88,7 +89,6 @@ class PostController extends Controller
     public function edit($id)
     {
         return view('posts.edit');
-
     }
 
     /**
@@ -103,7 +103,6 @@ class PostController extends Controller
         //fetch the id
         //update
         //redirect to specific page
-
     }
 
     /**

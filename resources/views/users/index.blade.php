@@ -9,28 +9,39 @@
                     List All User
                 </div>
                 <div class="card-body">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                    <div class="table-responsive">
+                          <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Avatar</th>
+                                  <th>Name</th>
+                                  <th>Email</th>
+                                  <th>Number Of Posts</th>
+                                  <th>Number Of Comments</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($users as $user)
+                                    <tr>
+                                      <td>{{ $user->id }}</td>
+                                      <td class="text-center"><img src="{{ asset('images/anonymous.jpg') }}" class="rounded-circle" width="50px" height="50px" alt="">  </td>
+                                      <td>{{ $user->name}}</td>
+                                      <td>{{ $user->email }}</td>
+                                      <td>100</td>
+                                      <td>100</td>
+                                    </tr>
+                                @endforeach
 
-                          <tr>
-                            <td>ID</td>
-                            <td>Name</td>
-                            <td>Email</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <span class="float-right">
-                          Link
-                      </span>
+                              </tbody>
+                          </table>
+                        </div>
                 </div>
+
             </div>
+            <span class="float-right mt-3">
+                {{ $users->links() }}
+            </span>
         </div>
     </div>
 </div>

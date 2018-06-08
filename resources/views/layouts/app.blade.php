@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/flag-icon.min.css')}}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <div id="app">
@@ -32,11 +33,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    
+
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link {{ request()->is('/') ? "active" : ""}}" href="/">Blog</a></li>
                         <li><a class="nav-link {{ request()->is('posts') ? "active" : ""}}" href="/posts">Post</a></li>
                         <li><a class="nav-link {{ request()->is('users') ? "active" : "" }}" href="/users">User</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Language
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-us flag-icon-squared pull-right"></i> English</a>
+                              <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-my flag-icon-squared pull-right"></i> Malay </a>
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
