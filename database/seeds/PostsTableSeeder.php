@@ -16,8 +16,8 @@ class PostsTableSeeder extends Seeder
         $category_id = range(1, 12);
         $posts = Post::get();
 
-        $posts->each(function ($post, $key) use ($category_id) {
-            $post->categories()->sync(array_random($category_id, 3));
-        });
+        // $posts->each(function ($post, $key) use ($category_id) {
+        //     $post->categories()->sync(array_random($category_id, 3));
+        // });
     }
 }
